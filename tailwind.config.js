@@ -9,4 +9,5 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  base: process.env.VITE_BASE_PATH || "/ecommrce-website",
 }; 
