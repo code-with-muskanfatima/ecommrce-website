@@ -1,26 +1,161 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary-color: 226, 232, 240;    /* Slate-200 */
+  --primary-light: 241, 245, 249;    /* Slate-100 */
+  --secondary-color: 148, 163, 184;  /* Slate-400 */
+  --accent-color: 186, 230, 253;     /* Sky-200 */
+  --background-light: 15, 23, 42;    /* Slate-900 */
+  --background-dark: 2, 6, 23;       /* Slate-950 */
+  --text-primary: 226, 232, 240;     /* Slate-200 */
+  --text-secondary: 148, 163, 184;   /* Slate-400 */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--text-primary));
+  background: rgb(var(--background-dark));
+  font-family: 'Inter', sans-serif;
+}
+
+/* Luxury Button Styles */
+.btn-primary {
+  @apply bg-gradient-to-r from-slate-200 via-sky-200 to-slate-200 text-slate-900 
+         px-8 py-4 rounded-xl font-medium tracking-wide
+         hover:from-slate-100 hover:via-sky-100 hover:to-slate-100
+         transition-all duration-300 shadow-xl hover:shadow-sky-200/30
+         transform hover:scale-105 active:scale-95;
+}
+
+.btn-secondary {
+  @apply bg-slate-900 text-slate-200 px-8 py-4 rounded-xl 
+         border-2 border-slate-200/20 font-medium tracking-wide
+         hover:bg-slate-800 hover:border-slate-200/40
+         transition-all duration-300 shadow-lg hover:shadow-xl
+         transform hover:scale-105 active:scale-95;
+}
+
+/* Luxury Card Style */
+.card {
+  @apply bg-slate-900/90 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl 
+         transition-all duration-500 border border-slate-200/10
+         hover:border-slate-200/20 overflow-hidden
+         transform hover:scale-[1.02] hover:-rotate-1;
+}
+
+/* Gradient Text Effects */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r 
+         from-slate-200 via-sky-200 to-slate-300
+         font-bold hover:from-slate-100 hover:via-sky-100 
+         hover:to-slate-200 transition-all duration-300;
+}
+
+/* Hero Section Gradient */
+.hero-gradient {
+  @apply bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950
+         relative overflow-hidden;
+}
+
+.hero-gradient::before {
+  @apply content-[''] absolute inset-0 
+         bg-gradient-to-r from-sky-200/5 to-slate-200/5 
+         mix-blend-overlay opacity-60;
+}
+
+/* Animated Background Pattern */
+.bg-pattern {
+  @apply absolute inset-0 opacity-5;
+  background-image: linear-gradient(30deg, #e2e8f0 12%, transparent 12.5%, transparent 87%, #e2e8f0 87.5%, #e2e8f0),
+    linear-gradient(150deg, #e2e8f0 12%, transparent 12.5%, transparent 87%, #e2e8f0 87.5%, #e2e8f0),
+    linear-gradient(30deg, #e2e8f0 12%, transparent 12.5%, transparent 87%, #e2e8f0 87.5%, #e2e8f0),
+    linear-gradient(150deg, #e2e8f0 12%, transparent 12.5%, transparent 87%, #e2e8f0 87.5%, #e2e8f0),
+    linear-gradient(60deg, #e2e8f077 25%, transparent 25.5%, transparent 75%, #e2e8f077 75%, #e2e8f077),
+    linear-gradient(60deg, #e2e8f077 25%, transparent 25.5%, transparent 75%, #e2e8f077 75%, #e2e8f077);
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+  animation: movePattern 60s linear infinite;
+}
+
+@keyframes movePattern {
+  from {
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+  }
+  to {
+    background-position: 0 140px, 0 140px, 40px 210px, 40px 210px, 0 140px, 40px 210px;
+  }
+}
+
+/* Navigation Links */
+.nav-link {
+  @apply text-slate-400 hover:text-slate-200 transition-colors duration-300
+         font-medium px-6 py-3 rounded-xl hover:bg-slate-800
+         transform hover:scale-105;
+}
+
+.nav-link-active {
+  @apply text-slate-200 bg-slate-800 shadow-sm;
+}
+
+/* Category Buttons */
+.category-btn {
+  @apply w-full text-left px-6 py-4 rounded-xl transition-all duration-300
+         font-medium tracking-wide border-2 border-transparent text-slate-400
+         hover:border-slate-200/20 hover:shadow-lg hover:text-slate-200;
+}
+
+.category-btn-active {
+  @apply bg-gradient-to-r from-slate-200 to-sky-200 text-slate-900
+         shadow-xl border-none transform scale-[1.02];
+}
+
+/* Product Card Hover Effects */
+.product-card-hover {
+  @apply transition-all duration-500 transform hover:scale-105
+         hover:rotate-1 hover:shadow-2xl;
+}
+
+/* Price Tags */
+.price-tag {
+  @apply text-3xl font-bold bg-gradient-to-br from-slate-200 to-sky-200
+         bg-clip-text text-transparent;
+}
+
+/* Badges */
+.badge {
+  @apply px-4 py-1.5 rounded-xl text-sm font-medium tracking-wide
+         shadow-sm transform hover:scale-105 transition-transform duration-300;
+}
+
+.badge-primary {
+  @apply bg-gradient-to-r from-slate-200/20 to-sky-200/20 text-slate-200;
+}
+
+.badge-secondary {
+  @apply bg-gradient-to-r from-sky-200/20 to-slate-200/20 text-sky-200;
+}
+
+/* Section Titles */
+.section-title {
+  @apply text-4xl md:text-5xl font-bold text-slate-200 
+         tracking-tight leading-tight;
+}
+
+.section-subtitle {
+  @apply text-xl text-slate-400 tracking-wide leading-relaxed max-w-3xl;
+}
+
+/* Input Fields */
+.input-field {
+  @apply w-full px-6 py-4 rounded-xl border-2 border-slate-800 
+         focus:border-slate-200 focus:ring-4 focus:ring-slate-200/10 
+         transition-all duration-300 outline-none text-lg bg-slate-900
+         text-slate-100 hover:border-slate-200/30;
+}
+
+/* Glass Effect */
+.glass-effect {
+  @apply bg-slate-900/60 backdrop-blur-lg border border-slate-200/10
+         hover:border-slate-200/20 transition-all duration-300;
 }
